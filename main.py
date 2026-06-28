@@ -98,7 +98,8 @@ start_surface = pygame.transform.rotozoom(start_surface,0,0.5)
 start_surface_rect = start_surface.get_rect(center = (500 , 300))
 start_message = font_style.render("Press \'Enter\' to Start", True , (255,255,255))
 start_message_rect = start_message.get_rect(center = (500 , 500))
-
+shoot_message = font_style.render("Press \'Space\' to Shoot",True,(255,255,255))
+movement_message = font_style.render("Press for Movement",True,(255,255,255))
 #sound 
 bg_sound = pygame.mixer.music.load("pygame\\Space_Shooter\\audio\\8bit-spaceshooter.mp3")
 pygame.mixer.music.set_volume(0.3)
@@ -109,6 +110,14 @@ player_collision_sound = pygame.mixer.Sound('pygame\\Space_Shooter\\audio\\explo
 player_collision_sound.set_volume(0.1)
 rocket_sound = pygame.mixer.Sound('pygame\\Space_Shooter\\audio\\laser3.ogg')
 rocket_sound.set_volume(0.1)
+
+#ui 
+space_bar = pygame.image.load('pygame\Space_Shooter\Sprites\Space_bar.png').convert_alpha()
+space_bar = pygame.transform.rotozoom(space_bar,0,0.5)
+space_bar_rect = space_bar.get_rect(center = (250,320))
+movement_button = pygame.image.load('pygame\Space_Shooter\Sprites\Movement_button.png').convert_alpha()
+movement_button = pygame.transform.rotozoom(movement_button,0,0.5)
+movement_button_rect = movement_button.get_rect(center = (770,320))
 
 while running:
     for event in pygame.event.get():
@@ -171,6 +180,7 @@ while running:
         score_board = font_style.render(f"Score :{score_count}" , True ,(255,255,255))
         screen.blit(score_board,(0,0))
         
+        
 
     else :
         obstacle_group.empty()
@@ -183,7 +193,12 @@ while running:
         if score_count == 0:
 
             screen.fill("#000000")
-            screen.blit(start_surface,start_surface_rect)
+            #screen.blit(start_surface,start_surface_rect)
+           
+            screen.blit(space_bar,space_bar_rect)
+            screen.blit(movement_button,movement_button_rect)
+            screen.blit(shoot_message,(70,200))
+            screen.blit(movement_message,(600,190))
             screen.blit(start_message,start_message_rect)
 
         else :
@@ -194,6 +209,7 @@ while running:
             screen.blit(start_surface,start_surface_rect)
             screen.blit(end_message,end_message_rect)
             screen.blit(start_message,start_message_rect)
+
 
     clock.tick(60) #FPS : 60 
     pygame.display.update()
