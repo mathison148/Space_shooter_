@@ -193,8 +193,6 @@ while running:
         if score_count == 0:
 
             screen.fill("#000000")
-            #screen.blit(start_surface,start_surface_rect)
-           
             screen.blit(space_bar,space_bar_rect)
             screen.blit(movement_button,movement_button_rect)
             screen.blit(shoot_message,(70,200))
